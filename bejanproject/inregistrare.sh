@@ -10,7 +10,7 @@ verifica_existenta_utilizator() {
         sleep 0.5
         echo "Vă rugăm să introduceți alt nume de utilizator."
         sleep 0.5
-        return 1 # exmailul a fost gasit
+        return 1
     else
         return 0
     fi
@@ -23,12 +23,11 @@ verifica_existenta_email() {
         sleep 0.5
         echo "Vă rugăm să introduceți o altă adresă de email."
         sleep 0.5
-        return 1 #
+        return 1
     else
-        return 0 #
+        return 0
     fi
 }
-
 
 adauga_utilizator_csv() {
     nume_utilizator=$1
@@ -41,7 +40,7 @@ adauga_utilizator_csv() {
 
 creaza_director_home() {
     nume_utilizator=$1
-    cale_home="/home/$nume_utilizator"
+    cale_home="home/$nume_utilizator"
     mkdir -p "$cale_home"
 }
 
@@ -52,7 +51,7 @@ creaza_idunic() {
 preia_date_utilizator() {
 
     while true; do
-      echo -e "\nIntrodu numele utilizatorului:"
+      echo -e "\nIntrodu numele de utilizator: "
       read nume_utilizator
 
       if verifica_existenta_utilizator "$nume_utilizator"; then
@@ -65,18 +64,15 @@ preia_date_utilizator() {
             echo -e "\nIntrodu adresa de email a utilizatorului:"
              read email
              if verifica_existenta_email "$email"; then
-                if ! [[ "$email" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then #ancora #regex
-                #[a-zA-Z0-9._%+-]+: Unul sau mai multe caractere permise în partea locală a adresei de email (înainte de @). 
-                #[a-zA-Z0-9.-]+: Unul sau mai multe caractere permise în numele de domeniu. Aceste caractere pot fi litere mici sau mari, cifre, punct sau liniuță.
-                 #[a-zA-Z]{2,} Doi sau mai multe caractere alfabetice (litere mici sau mari) reprezentând extensia de domeniu de nivel superior 
-                        echo -e "\nAdresa de email nu este validă."
+                if ! [[ "$email" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+                        echo -e -n "\n\e[31mAdresa de email nu este validă.\e[0m"
                 else
                         break
                  fi
              fi
         done
 
-  while true; do
+       while true; do
             echo -e "\nIntrodu parola utilizatorului. "
             sleep 0.5
             echo -e "\e[38;5;208mAceasta trebuie sa aiba minim 8 caractere: cel putin o litera, o cifra si un caracter special.\e[0m"
@@ -109,14 +105,13 @@ preia_date_utilizator() {
             varsta=$(( $(date +%Y) - an_nastere ))  # Calcul vârstă
             break
         else
-            echo -e "\nAnul nașterii trebuie să fie în format YYYY și să fie valid."
+            echo -e "\n\e[31mAnul nașterii trebuie să fie în format YYYY și să fie valid.\e[0m"
         fi
     done
 }
 
-
-
 preia_date_utilizator
+
 if [ "$varsta" -gt 14 ]; then
         id=$(creaza_idunic)
         adauga_utilizator_csv "$nume_utilizator" "$varsta" "$email" "$parola" "$id"
