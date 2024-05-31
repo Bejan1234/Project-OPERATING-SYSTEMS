@@ -1,6 +1,6 @@
 Proiect Sisteme Operare
 
-Proiectul reprezinta o suita de scripturi BASH care cuprinde urmatoarele cerintee:
+Proiectul reprezinta o suita de scripturi BASH care cuprinde urmatoarele cerinte:
 
 Simuleaza un sistem de management al utilizatorilor prin 3 functionalitati principale:
 1.Inregistrarea unor utilizatori noi
