@@ -1,5 +1,3 @@
-# Auto detect text files and perform LF normalization
-* text=auto
 #!/bin/bash
 
 utilizatori_CSV="/home/ionutb/bejanproject/registru1.csv"
@@ -100,4 +98,3 @@ case $alegere in
         *) echo "Ai ales alt numar" ;;
 esac # inchide case-ul
 done
-
