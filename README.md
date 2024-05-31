@@ -1,4 +1,5 @@
 Proiect Sisteme Operare
+
 Proiectul reprezinta o suita de scripturi BASH care cuprinde urmatoarele cerintee:
 
 Simuleaza un sistem de management al utilizatorilor prin 3 functionalitati principale:
